@@ -1,6 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import books from './booksdb.mjs';
+import {books} from './booksdb.mjs';
 
 export const authenticated_users_router = express.Router();
 export const users = [];
@@ -53,7 +53,6 @@ authenticated_users_router.put("/auth/review/:isbn", (req, res) => {
 
 authenticated_users_router.delete("/auth/review/:isbn", (req, res) => {
     const isbn = req.params.isbn;
-    const {review} = req.body;
     const username = req.session.user;
 
     if (!books[isbn]) {

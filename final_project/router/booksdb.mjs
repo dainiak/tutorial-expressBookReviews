@@ -11,4 +11,30 @@ export const books = {
     10: {"author": "Samuel Beckett", "title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {}}
 };
 
-export default books;
+
+// Simulate database operations with delays
+const simulateDbDelay = () => new Promise(resolve => setTimeout(resolve, 500));
+
+export const findBookById = async (isbn) => {
+    await simulateDbDelay();
+    return books[isbn];
+};
+
+export const findBooksByAuthor = async (author) => {
+    await simulateDbDelay();
+    return Object.values(books).filter(
+        book => book.author.toLowerCase() === author.toLowerCase()
+    );
+};
+
+export const findBooksByTitle = async (searchTitle) => {
+    await simulateDbDelay();
+    return Object.values(books).filter(
+        book => book.title.toLowerCase().includes(searchTitle.toLowerCase())
+    );
+};
+
+export const getAllBooks = async () => {
+    await simulateDbDelay();
+    return books;
+};
